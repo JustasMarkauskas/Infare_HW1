@@ -1,0 +1,245 @@
+Flying date: 2019-09-1
+Departure airport: OSL
+Departure time: 13:10
+Arrival airport: RIX
+Arrival time: 15:40
+Ticket price: 48.51€
+
+Flying date: 2019-09-1
+Departure airport: OSL
+Departure time: 20:40
+Arrival airport: RIX
+Arrival time: 23:10
+Ticket price: 43.10€
+
+Flying date: 2019-09-2
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-3
+Departure airport: OSL
+Departure time: 09:10
+Arrival airport: RIX
+Arrival time: 11:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-4
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-5
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 76.70€
+
+Flying date: 2019-09-5
+Departure airport: OSL
+Departure time: 20:20
+Arrival airport: RIX
+Arrival time: 22:50
+Ticket price: 76.70€
+
+Flying date: 2019-09-6
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 109.11€
+
+Flying date: 2019-09-8
+Departure airport: OSL
+Departure time: 13:10
+Arrival airport: RIX
+Arrival time: 15:40
+Ticket price: 48.51€
+
+Flying date: 2019-09-8
+Departure airport: OSL
+Departure time: 20:40
+Arrival airport: RIX
+Arrival time: 23:10
+Ticket price: 43.10€
+
+Flying date: 2019-09-9
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-10
+Departure airport: OSL
+Departure time: 09:10
+Arrival airport: RIX
+Arrival time: 11:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-11
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-12
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 87.50€
+
+Flying date: 2019-09-12
+Departure airport: OSL
+Departure time: 20:20
+Arrival airport: RIX
+Arrival time: 22:50
+Ticket price: 65.90€
+
+Flying date: 2019-09-13
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: -€
+
+Flying date: 2019-09-15
+Departure airport: OSL
+Departure time: 13:10
+Arrival airport: RIX
+Arrival time: 15:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-15
+Departure airport: OSL
+Departure time: 20:40
+Arrival airport: RIX
+Arrival time: 23:10
+Ticket price: 43.10€
+
+Flying date: 2019-09-16
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 48.51€
+
+Flying date: 2019-09-17
+Departure airport: OSL
+Departure time: 09:10
+Arrival airport: RIX
+Arrival time: 11:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-18
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-19
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 98.31€
+
+Flying date: 2019-09-19
+Departure airport: OSL
+Departure time: 20:20
+Arrival airport: RIX
+Arrival time: 22:50
+Ticket price: 76.70€
+
+Flying date: 2019-09-20
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 98.31€
+
+Flying date: 2019-09-22
+Departure airport: OSL
+Departure time: 13:10
+Arrival airport: RIX
+Arrival time: 15:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-22
+Departure airport: OSL
+Departure time: 20:40
+Arrival airport: RIX
+Arrival time: 23:10
+Ticket price: 43.10€
+
+Flying date: 2019-09-23
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 43.10€
+
+Flying date: 2019-09-24
+Departure airport: OSL
+Departure time: 09:10
+Arrival airport: RIX
+Arrival time: 11:40
+Ticket price: 43.10€
+
+Flying date: 2019-09-25
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 55.10€
+
+Flying date: 2019-09-26
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 76.70€
+
+Flying date: 2019-09-26
+Departure airport: OSL
+Departure time: 20:20
+Arrival airport: RIX
+Arrival time: 22:50
+Ticket price: 76.70€
+
+Flying date: 2019-09-27
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 109.11€
+
+Flying date: 2019-09-29
+Departure airport: OSL
+Departure time: 13:10
+Arrival airport: RIX
+Arrival time: 15:40
+Ticket price: 76.70€
+
+Flying date: 2019-09-29
+Departure airport: OSL
+Departure time: 20:40
+Arrival airport: RIX
+Arrival time: 23:10
+Ticket price: 48.51€
+
+Flying date: 2019-09-30
+Departure airport: OSL
+Departure time: 11:20
+Arrival airport: RIX
+Arrival time: 13:50
+Ticket price: 55.10€
+
