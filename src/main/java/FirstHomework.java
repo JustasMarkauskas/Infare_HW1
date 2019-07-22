@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
 import kong.unirest.Unirest;
 
 public class FirstHomework {
@@ -17,7 +19,7 @@ public class FirstHomework {
 		int departureDays = 30;
 
 		final PrintWriter out = new PrintWriter("Flight_info.txt");
-		
+
 		for (int i = 1; i <= departureDays; i++) {
 
 			int day = i;
@@ -25,7 +27,7 @@ public class FirstHomework {
 			final String selectedDay = departureDay;
 			final String returnDay = departureDay;
 
-			System.out.println("Flying date: " + DepartureYear + "-" + DepartureMonth + "-" + departureDay + "\n");
+			System.out.println("\nFlying date: " + DepartureYear + "-" + DepartureMonth + "-" + departureDay);
 
 			final kong.unirest.HttpResponse<String> response = Unirest
 					.get("https://www.norwegian.com/en/ipc/availability/avaday?D_City=" + flyFrom + "&A_City=" + flyTo
@@ -38,21 +40,58 @@ public class FirstHomework {
 
 			final Document htmlSnippset = Jsoup.parseBodyFragment(response.getBody());
 
+			ArrayList<Double> prices = new ArrayList<Double>();
+
 			for (Element flightResult : htmlSnippset.select("table.avadaytable > tbody > tr.rowinfo1")) {
 
-				final String depTime = flightResult.child(0).text();
-				final String arrTime = flightResult.child(1).text();
-				final String price = flightResult.child(4).text();
+				// final String depTime = flightResult.child(0).text();
+				// final String arrTime = flightResult.child(1).text();
 
-				out.write("Flying date: " + DepartureYear + "-" + DepartureMonth + "-" + departureDay + "\nDeparture airport: " + flyFrom + "\nDeparture time: " + depTime + "\nArrival airport: "
-								+ flyTo + "\nArrival time: " + arrTime + "\nTicket price: " + price + "€\n\n");
+				final String price = flightResult.child(4).text();
 				
-				System.out.println("Departure airport: " + flyFrom + "\nDeparture time: " + depTime + "\nArrival airport: "
-								+ flyTo + "\nArrival time: " + arrTime + "\nTicket price: " + price + "€\n\n");
+				
+				
+				prices.add(Double.parseDouble(price));
+
 			}
 
+			//System.out.println(prices);
+			
+			Double minPrice = getMin(prices);
+			
+			System.out.println(minPrice);
+			/*
+			 * out.write("Flying date: " + DepartureYear + "-" + DepartureMonth + "-" +
+			 * departureDay + "\nDeparture airport: " + flyFrom + "\nDeparture time: " +
+			 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
+			 * "\nTicket price: " + price + "€\n\n");
+			 * 
+			 * System.out.println("Departure airport: " + flyFrom + "\nDeparture time: " +
+			 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
+			 * "\nTicket price: " + price + "€\n\n");
+			 */
+			
+			
 		}
-		out.close();
+out.close();
+	}
+
+	
+
+// Method for getting the minimum value
+	public static Double getMin(ArrayList<Double> inputList) {
+		//String noFlight = "No flights";
+		Double minValue = inputList.get(0);
+		double i = 0;
+		for (Double price : inputList) {
+			if (price !=null & price < minValue) {
+				minValue = price;
+			} else if (price == null){
+				minValue = i;
+			}
+		}
+		return minValue;		
+		
 	}
 
 }
