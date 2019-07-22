@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import kong.unirest.Unirest;
 
@@ -48,50 +51,57 @@ public class FirstHomework {
 				// final String arrTime = flightResult.child(1).text();
 
 				final String price = flightResult.child(4).text();
-				
-				
-				
-				prices.add(Double.parseDouble(price));
 
+				
+				try {
+					prices.add(Double.parseDouble(price));
+				} catch (NumberFormatException e) {
+					// System.out.println("there was an error" + e.getMessage());
+				}
 			}
 
-			//System.out.println(prices);
-			
-			Double minPrice = getMin(prices);
-			
-			System.out.println(minPrice);
-			/*
-			 * out.write("Flying date: " + DepartureYear + "-" + DepartureMonth + "-" +
-			 * departureDay + "\nDeparture airport: " + flyFrom + "\nDeparture time: " +
-			 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
-			 * "\nTicket price: " + price + "€\n\n");
-			 * 
-			 * System.out.println("Departure airport: " + flyFrom + "\nDeparture time: " +
-			 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
-			 * "\nTicket price: " + price + "€\n\n");
-			 */
-			
-			
-		}
-out.close();
+		
+		// System.out.println(prices);
+
+		MinValue minPrice = getMin(prices);
+		System.out.println(minPrice.id + ". " + minPrice.value);
+		/*
+		 * out.write("Flying date: " + DepartureYear + "-" + DepartureMonth + "-" +
+		 * departureDay + "\nDeparture airport: " + flyFrom + "\nDeparture time: " +
+		 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
+		 * "\nTicket price: " + price + "€\n\n");
+		 * 
+		 * System.out.println("Departure airport: " + flyFrom + "\nDeparture time: " +
+		 * depTime + "\nArrival airport: " + flyTo + "\nArrival time: " + arrTime +
+		 * "\nTicket price: " + price + "€\n\n");
+		 */
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.norwegian.com/en/ipc/availability/avaday?D_City="+flyFrom +"&A_City="+flyTo+"&TripType=1&D_Day="+departureDay+"&D_Month=201909&D_SelectedDay="+selectedDay+"&R_Day="+returnDay
+				+ "&R_Month=201909&R_SelectedDay=01&IncludeTransit=false&AgreementCodeFK=-1&CurrencyCode=EUR&rnd=34917&processid=72207&mode=ab");
+		
+		driver.findElement(By.id("FlightSelectOutboundStandardLowFare"+minPrice.id)).click();
+		
+	
+		
+	}out.close();
 	}
 
-	
 
 // Method for getting the minimum value
-	public static Double getMin(ArrayList<Double> inputList) {
-		//String noFlight = "No flights";
-		Double minValue = inputList.get(0);
-		double i = 0;
-		for (Double price : inputList) {
-			if (price !=null & price < minValue) {
-				minValue = price;
-			} else if (price == null){
-				minValue = i;
-			}
-		}
-		return minValue;		
-		
-	}
+	public static MinValue getMin(ArrayList<Double> inputList) {
+	      if (!inputList.isEmpty()) {
+	         Double minValue = inputList.get(0);
+	         int i = 0;
+	         for (Double price : inputList) {
+	            if (price !=null & price < minValue) {
+	               minValue = price;
+	            }
+	            i++;
+	         }
+	         return new MinValue(minValue, i);
+	      }
+	      return new MinValue(null, -1);
+	   }
 
-}
+	}
