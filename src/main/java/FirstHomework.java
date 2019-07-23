@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,157 +13,135 @@ import kong.unirest.Unirest;
 
 public class FirstHomework {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        String DepartureYear = "2019";
-        String DepartureMonth = "09";
-        String flyFrom = "OSL";
-        String flyTo = "RIX";
-        int departureDays = 30;
-       
+		String DepartureYear = "2019";
+		String DepartureMonth = "09";
+		String flyFrom = "OSL";
+		String flyTo = "RIX";
+		int departureDays = 30;
+		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
 
-        //final PrintWriter out = new PrintWriter("Flight_info.txt");
+		for (int i = 1; i <= departureDays; i++) {
 
-        for (int i = 1; i <= departureDays; i++) {
+			int day = i;
+			final String departureDay = String.valueOf(day);
+			final String selectedDay = departureDay;
+			final String returnDay = departureDay;
 
-            int day = i;
-            final String departureDay = String.valueOf(day);
-            final String selectedDay = departureDay;
-            final String returnDay = departureDay;
+			System.out.println("\nFlying date: " + DepartureYear + "-" + DepartureMonth + "-" + departureDay);
 
-            System.out.println("\nFlying date: " + DepartureYear + "-" + DepartureMonth + "-" + departureDay);
+			final kong.unirest.HttpResponse<String> response = Unirest
+					.get("https://www.norwegian.com/en/ipc/availability/avaday?D_City=" + flyFrom + "&A_City=" + flyTo
+							+ "&TripType=1&D_Day=" + departureDay + "&D_Month=201909&D_SelectedDay=" + selectedDay
+							+ "&R_Day=" + returnDay
+							+ "&R_Month=201909&R_SelectedDay=01&IncludeTransit=false&AgreementCodeFK=-1&CurrencyCode=EUR&rnd=34917&processid=72207&mode=ab")
+					.asString();
 
-            final kong.unirest.HttpResponse<String> response = Unirest
-                    .get("https://www.norwegian.com/en/ipc/availability/avaday?D_City=" + flyFrom + "&A_City=" + flyTo
-                            + "&TripType=1&D_Day=" + departureDay + "&D_Month=201909&D_SelectedDay=" + selectedDay
-                            + "&R_Day=" + returnDay
-                            + "&R_Month=201909&R_SelectedDay=01&IncludeTransit=false&AgreementCodeFK=-1&CurrencyCode=EUR&rnd=34917&processid=72207&mode=ab")
-                    .asString();
+			// System.out.println(response.getBody());
 
-           // System.out.println(response.getBody());
+			final Document htmlSnippset = Jsoup.parseBodyFragment(response.getBody());
 
-            final Document htmlSnippset = Jsoup.parseBodyFragment(response.getBody());
+			ArrayList<MinValue> prices = new ArrayList<MinValue>();
 
-            ArrayList<MinValue> prices = new ArrayList<MinValue>();
-
-            for (Element flightResult : htmlSnippset.select("table.avadaytable > tbody > tr.rowinfo1")) {
-             //   final String depTime = flightResult.child(0).text();
-                // final String arrTime = flightResult.child(1).text();
-
-
-                final String price = flightResult.child(4).text();
-                try {
-                    prices.add(new MinValue(Double.parseDouble(price), flightResult.child(3).child(0).childNodes().get(0).attributes().get("id")));
-                } catch (NumberFormatException e) {
-                    
-                }
-            }
-
-
-             //System.out.println(prices);
-
-            MinValue minPrice = getMin(prices);
-           //System.out.println(minPrice.id + ". " + minPrice.value);
-           
-            if (minPrice.value != null) {
-            	WebDriver driver = new ChromeDriver();
-                driver.get("https://www.norwegian.com/en/ipc/availability/avaday?D_City=" + flyFrom + "&A_City=" + flyTo + "&TripType=1&D_Day=" + departureDay + "&D_Month=201909&D_SelectedDay=" + selectedDay + "&R_Day=" + returnDay
-                        + "&R_Month=201909&R_SelectedDay=01&IncludeTransit=false&AgreementCodeFK=-1&CurrencyCode=EUR&rnd=34917&processid=72207&mode=ab");
-
-                driver.findElement(By.id(minPrice.id)).click();
-                
-              try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-				e.printStackTrace();
-			}        
-             
-                          
-             // WebElement element;
-             // = driver.findElement(By.cssSelector("#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.evenrow.selectedrow.rowinfo1 > td.fareselect.standardlowfare.selectedfare > div > label"));
-              
-            //  driver.toString();
-              //System.out.println(departureDay);
-              
-             
-             // String response2 = driver.getPageSource();
-               
-               
-               
-               
-             //  System.out.println(response2);
-                
-             // String body2 = response.getBody();
-             // System.out.println(body2);
-             
-                          
-             // WebElement dt = driver.findElement(By.cssSelector("tr.selectedrow.rowinfo1"));
-              
-              //System.out.println(dt);
-              //for (Element flightResult2 : body2.se   htmlSnippset2.select("table.avadaytable > tbody > tr.selectedrow.rowinfo1"))
-                
-                
-                //final Document htmlSnippset2 = Jsoup.parseBodyFragment(response2.getBody());
-               // System.out.println(htmlSnippset2);
-                
-                
+			for (Element flightResult : htmlSnippset.select("table.avadaytable > tbody > tr.rowinfo1")) {
+				
+				final String price = flightResult.child(4).text();
 				try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-			
-                
-                
-              for (Element flightResult : htmlSnippset.select("table.avadaytable > tbody > tr.selectedrow.rowinfo1")) {
-                    
-                	
-                	
-                	final String depTime = flightResult.child(0).child(0).text();
-                    final String arrTime = flightResult.child(0).child(1).text();
-                    final String price = flightResult.child(0).child(4).text();
-                    //final String taxes = flightResult.;
-                    //final String depAirport= flightResult.;
-                   //final String arrAirport = flightResult.;
-                    
-                    System.out.println(depTime);
-                   
-              
-                
-               }
-                
+					prices.add(new MinValue(Double.parseDouble(price),
+							flightResult.child(3).child(0).childNodes().get(0).attributes().get("id")));
+				} catch (NumberFormatException e) {
 
-                try {
-					Thread.sleep(1000);
+				}
+			}
+
+			// System.out.println(prices);
+
+			MinValue minPrice = getMin(prices);
+			// System.out.println(minPrice.id + ". " + minPrice.value);
+
+			if (minPrice.value != null) {
+
+				driver.get("https://www.norwegian.com/en/ipc/availability/avaday?D_City=" + flyFrom + "&A_City=" + flyTo
+						+ "&TripType=1&D_Day=" + departureDay + "&D_Month=201909&D_SelectedDay=" + selectedDay
+						+ "&R_Day=" + returnDay
+						+ "&R_Month=201909&R_SelectedDay=01&IncludeTransit=false&AgreementCodeFK=-1&CurrencyCode=EUR&rnd=34917&processid=72207&mode=ab");
+
+				driver.findElement(By.id(minPrice.id)).click();
+
+				try {
+					Thread.sleep(4000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-                driver.close();
-                
-            }
 
-        }
-        
-        //out.close();
-    }
+				WebElement taxes = driver.findElement(By.cssSelector(
+						"#ctl00_MainContent_ipcAvaDay_upnlResSelection > div:nth-child(1) > div > table > tbody > tr:nth-child(18) > td.rightcell.emphasize"));
+				if (taxes != null) {	
 
+				}
 
-    // Method for getting the minimum value
-    public static MinValue getMin(ArrayList<MinValue> inputList) {
-        if (!inputList.isEmpty()) {
-            MinValue minValue = inputList.get(0);
-            int i = 0;
-            for (MinValue price : inputList) {
-                if (price != null & price.value < minValue.value) {
-                    minValue = price;
-                }
-                i++;
-            }
-            return minValue;
-        }
-        return new MinValue(null, "-1");
-    }
+				WebElement price = driver.findElement(By.cssSelector(
+						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.fareselect.selectedfare > div > label"));
+				if (price != null) {					
+
+				}
+
+				WebElement depTime = driver.findElement(By.cssSelector(
+						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.depdest > div"));
+				if (depTime != null) {				
+
+				}
+
+				WebElement arrTime = driver.findElement(By.cssSelector(
+						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.arrdest > div"));
+				if (arrTime != null) {					
+
+				}
+
+				WebElement from = driver.findElement(By.cssSelector(
+						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo2 > td.depdest > div"));
+				if (from != null) {	
+					
+				}
+
+				WebElement to = driver.findElement(By.cssSelector(
+						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo2 > td.arrdest > div"));
+				if (to != null) {
+
+					
+
+				}
+
+				System.out.println("Departure airport: " + from.getText() + "\nDeparture time: " + depTime.getText()
+						+ "\nArrival airport: " + to.getText() + "\nArrival time: " + arrTime.getText()
+						+ "\nTicket price: " + price.getText() + "€" + "\nTaxes: " + taxes.getText() + "€" + "\n\n");
+
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		driver.quit();
+	}
+
+	// Method for getting the minimum value
+	public static MinValue getMin(ArrayList<MinValue> inputList) {
+		if (!inputList.isEmpty()) {
+			MinValue minValue = inputList.get(0);
+			for (MinValue price : inputList) {
+				if (price != null & price.value < minValue.value) {
+					minValue = price;
+				}
+			}
+			return minValue;
+		}
+		return new MinValue(null, "-1");
+	}
 
 }
