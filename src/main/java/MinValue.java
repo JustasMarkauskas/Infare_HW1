@@ -1,9 +1,7 @@
-
-
 public class MinValue { 
-	public MinValue(Double value, int index){ 
-		this.value = value; 		
-		this.id=index;} 
-	public int id; 
-	public Double value; 
+   public MinValue(Double value, String id){
+      this.value = value;       
+      this.id=id;}
+   public String id;
+   public Double value; 
 }
