@@ -46,7 +46,7 @@ public class FirstHomework {
 			ArrayList<MinValue> prices = new ArrayList<MinValue>();
 
 			for (Element flightResult : htmlSnippset.select("table.avadaytable > tbody > tr.rowinfo1")) {
-				
+
 				final String price = flightResult.child(4).text();
 				try {
 					prices.add(new MinValue(Double.parseDouble(price),
@@ -56,7 +56,7 @@ public class FirstHomework {
 				}
 			}
 
-			// System.out.println(prices);
+			 //System.out.println(prices);
 
 			MinValue minPrice = getMin(prices);
 			// System.out.println(minPrice.id + ". " + minPrice.value);
@@ -78,39 +78,37 @@ public class FirstHomework {
 
 				WebElement taxes = driver.findElement(By.cssSelector(
 						"#ctl00_MainContent_ipcAvaDay_upnlResSelection > div:nth-child(1) > div > table > tbody > tr:nth-child(18) > td.rightcell.emphasize"));
-				if (taxes != null) {	
+				if (taxes != null) {
 
 				}
 
 				WebElement price = driver.findElement(By.cssSelector(
 						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.fareselect.selectedfare > div > label"));
-				if (price != null) {					
+				if (price != null) {
 
 				}
 
 				WebElement depTime = driver.findElement(By.cssSelector(
 						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.depdest > div"));
-				if (depTime != null) {				
+				if (depTime != null) {
 
 				}
 
 				WebElement arrTime = driver.findElement(By.cssSelector(
 						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo1 > td.arrdest > div"));
-				if (arrTime != null) {					
+				if (arrTime != null) {
 
 				}
 
 				WebElement from = driver.findElement(By.cssSelector(
 						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo2 > td.depdest > div"));
-				if (from != null) {	
-					
+				if (from != null) {
+
 				}
 
 				WebElement to = driver.findElement(By.cssSelector(
 						"#avaday-outbound-result > div > div > div.bodybox > div > table > tbody > tr.selectedrow.rowinfo2 > td.arrdest > div"));
 				if (to != null) {
-
-					
 
 				}
 
